@@ -16,17 +16,17 @@ commit;         -- 全部成功,提交生效
 
 ## 示例
 
-经典场景:鱼皮要转 100 分零花钱给鸡哥。两步更新必须一起生效:
+老李要转 50 分给李阿巴,两步更新必须一起生效:
 
 ```sql
 begin;
-update student set score = score - 100 where name = '鱼皮';
-update student set score = score + 100 where name = '鸡哥';
+update student set score = score - 50 where name = '老李';
+update student set score = score + 50 where name = '李阿巴';
 commit;
 select * from student;
 ```
 
-执行后:鱼皮的分数从 400 变成 300,鸡哥从 2.5 变成 102.5,两人总分保持不变——钱没有凭空产生或消失,这就是事务保证的原子性。
+执行后:老李的分数从 500 变成 450,李阿巴从 120 变成 170,两人总分保持不变——这就是事务保证的原子性。
 
 ## 题目
 

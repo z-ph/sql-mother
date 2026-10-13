@@ -14,17 +14,17 @@ rollback;       -- 全部撤销,数据恢复原样
 
 ## 示例
 
-鸡哥一时冲动,想给热dog转 500 分。但鸡哥只有 2.5 分,余额根本不够!我们先把两步更新放进事务,再回滚它:
+孙加加一时冲动,想转 200 分给摸FISH,但他自己只有 100.5 分,余额根本不够。先放进事务再回滚:
 
 ```sql
 begin;
-update student set score = score - 500 where name = '鸡哥';
-update student set score = score + 500 where name = '热dog';
+update student set score = score - 200 where name = '孙加加';
+update student set score = score + 200 where name = '摸FISH';
 rollback;
 select * from student;
 ```
 
-rollback 执行后,两条 update 都被撤销,学生表保持初始的 10 行数据——鸡哥依旧是 2.5 分,热dog依旧是 600 分,什么都没有发生。
+rollback 执行后,两条 update 都被撤销,学生表保持初始数据——孙加加依旧是 100.5 分,什么都没有发生。
 
 ## 题目
 

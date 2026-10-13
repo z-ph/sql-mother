@@ -16,19 +16,19 @@
 
 ## 示例
 
-把增、改、删三件事包进一个事务:
+用一个迷你场景演示事务三步走(数据仅供演示,与本关题目无关):
 
 ```sql
 begin;
 insert into student (name, age, class_id, score, exam_num)
-values ('事务小子', 26, 3, 333, 3);
-update student set score = 220 where name = '李阿巴';
-delete from student where score < 1;
+values ('练习君', 22, 2, 200, 2);
+update student set score = 650 where name = '热dog';
+delete from student where score < 3;
 commit;
 select * from student;
 ```
 
-任何一步失败,都可以整体 rollback,不会出现"只插入了一半"的中间状态。
+任何一步出问题,都可以整体 rollback,不会出现"只改了一半"的中间状态。试试先不提交、直接查询,看看事务中的数据会发生什么变化?
 
 ## 题目
 

@@ -10,11 +10,11 @@
 
 用一个迷你场景演示三步走(数据仅供演示,与本关题目无关):
 
-第一步,插入转学生:
+第一步,插入转学生沙师弟:
 
 ```sql
 insert into student (name, age, class_id, score, exam_num)
-values ('小灵', 18, 3, 330, 1);
+values ('沙师弟', 30, 3, 350, 2);
 ```
 
 第二步,给老李加油(老李 score 原为 500):
@@ -23,19 +23,13 @@ values ('小灵', 18, 3, 330, 1);
 update student set score = 520 where name = '老李';
 ```
 
-第三步,移除分数不足 5 分的学生:
+第三步,移除分数低于 5 分的学生:
 
 ```sql
 delete from student where score < 5;
 ```
 
-最后查询最终结果:
-
-```sql
-select * from student;
-```
-
-可以看到:小灵出现在表尾,老李的分数变了,低分学生消失了——增、改、删的效果一次全有。
+最后查询 select * from student; 可以看到:沙师弟出现在表尾,老李的分数变了,低分学生消失了——增、改、删的效果一次全有。
 
 ## 题目
 

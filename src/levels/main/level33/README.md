@@ -14,21 +14,21 @@ insert into 目标表 select 查询语句;
 
 ## 示例
 
-把 student 表中分数大于等于 400 的学生归档到 student_archive:
+本关把分数大于等于 500 的学生归档到 student_archive:
 
 ```sql
 insert into student_archive
 select * from student
-where score >= 400;
+where score >= 500;
 ```
 
-然后再查询归档表:
+再查询归档表:
 
 ```sql
 select * from student_archive;
 ```
 
-就可以看到鱼皮(400)、热dog(600)、老李(500)、赵派森(600)共 4 名学生的完整记录被复制了过去。
+可以看到热dog(600)、老李(500)、赵派森(600)共 3 人被复制了过去。注意:条件写错,归档的结果就不同,做题时要看清题目的要求。
 
 ## 题目
 

@@ -17,21 +17,21 @@ commit;             -- 提交剩余的部分
 
 ## 示例
 
-教务处批量导入三名转学生,导完第三名"小迷糊"时发现他的信息录错了,只撤销他这一条:
+批量导入三名转学生,导完第三名"错错"时发现他的信息录错了,只撤销他这一条:
 
 ```sql
 begin;
-insert into student (name, age, class_id, score, exam_num) values ('大聪明', 30, 2, 555, 2);
+insert into student (name, age, class_id, score, exam_num) values ('小新', 25, 2, 500, 3);
 savepoint sp1;
-insert into student (name, age, class_id, score, exam_num) values ('小机灵', 21, 1, 444, 1);
+insert into student (name, age, class_id, score, exam_num) values ('小葵', 19, 1, 400, 2);
 savepoint sp2;
-insert into student (name, age, class_id, score, exam_num) values ('小迷糊', 19, 2, 199, 1);
+insert into student (name, age, class_id, score, exam_num) values ('错错', 18, 3, 100, 1);
 rollback to sp2;
 commit;
 select * from student;
 ```
 
-rollback to sp2 只撤销了小迷糊的插入,大聪明和小机灵保留,最终学生表比初始多 2 行,共 12 行。
+rollback to sp2 只撤销了错错的插入,小新和小葵保留,学生表比初始多 2 行。
 
 ## 题目
 

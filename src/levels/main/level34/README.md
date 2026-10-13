@@ -12,19 +12,13 @@ update 表名 set 列名 = 新值 where 更新条件;
 
 ## 示例
 
-鸡哥平时摸鱼太多,考试成绩只有 2.5 分。经过努力学习,他决定把分数改到 90:
+李阿巴上次考试发挥失常,只有 120 分,复核后确认应为 150 分:
 
 ```sql
-update student set score = 90 where name = '鸡哥';
+update student set score = 150 where name = '李阿巴';
 ```
 
-再用全表查询确认:
-
-```sql
-select * from student;
-```
-
-可以看到鸡哥那一行的 score 变成了 90,其他同学的分数不受影响。
+再用全表查询确认,可以看到李阿巴那一行的 score 变成了 150,其他同学不受影响。如果漏写 where 条件,所有学生的分数都会被改成 150——想想就很可怕!
 
 ## 题目
 

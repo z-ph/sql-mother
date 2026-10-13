@@ -18,13 +18,19 @@ delete from 表名;
 
 ## 示例
 
-清空 temp_student 表:
+以临时表 temp_student 为例,演示清空的完整过程。先看当前数据量:
+
+```sql
+select count(*) as remain from temp_student;
+```
+
+结果为 3。然后清空:
 
 ```sql
 delete from temp_student;
 ```
 
-再查询验证剩余条数:
+再查一次剩余条数:
 
 ```sql
 select count(*) as remain from temp_student;

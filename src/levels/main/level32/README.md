@@ -17,22 +17,16 @@ insert into 表名 (列名1, 列名2, ...) values
 
 ## 示例
 
-向 student 表一次插入两名新学生:
+一次插入两名转学生张三和李四:
 
 ```sql
 insert into student (name, age, class_id, score, exam_num)
 values
-    ('阿强', 22, 5, 91.5, 2),
-    ('小美', 20, 1, 76, 1);
+    ('张三', 20, 2, 300, 1),
+    ('李四', 21, 3, 310, 2);
 ```
 
-两名学生会被依次分配自增 id = 11 和 id = 12。再执行:
-
-```sql
-select * from student;
-```
-
-学生表将多出阿强、小美两行,共 12 行数据。
+两名学生会被依次分配自增 id = 11 和 id = 12。再执行 select * from student; 就能看到学生表多出两行,共 12 行数据。
 
 ## 题目
 
