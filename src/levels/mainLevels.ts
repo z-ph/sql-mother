@@ -40,6 +40,10 @@ import level39 from "./main/level39";
 import level40 from "./main/level40";
 import level41 from "./main/level41";
 import level42 from "./main/level42";
+import level43 from "./main/level43";
+import level44 from "./main/level44";
+import level45 from "./main/level45";
+import level46 from "./main/level46";
 
 /**
  * 主线关卡列表
@@ -87,6 +91,10 @@ const mainLevels: LevelType[] = [
   level40,
   level41,
   level42,
+  level43,
+  level44,
+  level45,
+  level46,
 ];
 
 export default mainLevels;
