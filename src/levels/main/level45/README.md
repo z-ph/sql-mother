@@ -15,22 +15,40 @@
 
 ## 示例
 
-演示把旧表 goods_old 迁移成带价格列的新结构(与题目无关):
+演示一次迷你迁移:旧表 goods_old 只有 id 和 title 两列,业务升级要求增加 price 列。goods_old 当前数据:
+
+| id | title |
+| ---- | ---- |
+| 1 | 机械键盘 |
+| 2 | 鼠标 |
+
+按迁移四步走:
 
 ```sql
+-- 1. 按新结构建新表
 create table goods_new (
     id integer not null primary key,
     title varchar(256) not null,
     price real default 0
 );
+-- 2. 复制数据(新列用默认值填充)
 insert into goods_new (id, title, price)
 select id, title, 0 from goods_old;
+-- 3. 删除旧表
 drop table goods_old;
+-- 4. 新表顶替旧表名
 alter table goods_new rename to goods_old;
 select * from goods_old;
 ```
 
-数据原封不动地搬到了新结构里,还多了一列 price。
+查询结果:
+
+| id | title | price |
+| ---- | ---- | ---- |
+| 1 | 机械键盘 | 0 |
+| 2 | 鼠标 | 0 |
+
+数据原封不动地搬到了新结构里,还多了一列 price。真实项目中迁移前要先备份,并建议用事务包裹整个流程。
 
 ## 题目
 

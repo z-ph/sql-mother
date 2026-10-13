@@ -18,13 +18,21 @@ delete from 表名;
 
 ## 示例
 
-以临时表 temp_student 为例,演示清空的完整过程。先看当前数据量:
+本关的示例数据中有一张临时表 temp_student(3 行测试数据):
+
+| id | name | age | class_id | score | exam_num |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 1 | 临时1 | 20 | 1 | 60 | 1 |
+| 2 | 临时2 | 21 | 2 | 70 | 2 |
+| 3 | 临时3 | 22 | 3 | 80 | 3 |
+
+先看当前数据量:
 
 ```sql
 select count(*) as remain from temp_student;
 ```
 
-结果为 3。然后清空:
+结果:remain = 3。然后清空整张表:
 
 ```sql
 delete from temp_student;
@@ -36,7 +44,7 @@ delete from temp_student;
 select count(*) as remain from temp_student;
 ```
 
-结果为 0,但表结构还在,说明数据已被清空、表本身保留。
+结果:remain = 0,但表还在——数据被清空,表结构保留,之后仍能继续插入。
 
 ## 题目
 

@@ -14,17 +14,29 @@ rollback;       -- 全部撤销,数据恢复原样
 
 ## 示例
 
-孙加加一时冲动,想转 200 分给摸FISH,但他自己只有 100.5 分,余额根本不够。先放进事务再回滚:
+孙加加一时冲动,想转 200 分给摸FISH,但他自己只有 100.5 分,余额根本不够。两人当前数据:
+
+| id | name | age | class_id | score | exam_num |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 4 | 摸FISH | null | 2 | 360 | 4 |
+| 10 | 孙加加 | 60 | 5 | 100.5 | 1 |
+
+把两条 update 放进事务,然后整体回滚:
 
 ```sql
 begin;
 update student set score = score - 200 where name = '孙加加';
 update student set score = score + 200 where name = '摸FISH';
 rollback;
+```
+
+再查询验证:
+
+```sql
 select * from student;
 ```
 
-rollback 执行后,两条 update 都被撤销,学生表保持初始数据——孙加加依旧是 100.5 分,什么都没有发生。
+查询结果:学生表仍是初始的 10 行数据——孙加加依旧是 100.5 分,摸FISH依旧是 360 分,什么都没有发生。rollback 把 begin 之后的所有修改都撤销了。
 
 ## 题目
 

@@ -18,16 +18,36 @@ alter table 旧表名 rename to 新表名;              -- 重命名表
 
 ## 示例
 
-演示给一张商品表加列并回填(与题目无关):
+演示给一张商品表加列、回填数据、改列名。假设已有商品表 goods:
+
+| id | name | price |
+| ---- | ---- | ---- |
+| 1 | 机械键盘 | 299 |
+| 2 | 鼠标 | 99 |
+
+先加一列库存 stock,并给已有商品回填:
 
 ```sql
 alter table goods add column stock int default 0;
 update goods set stock = 100 where id = 1;
+update goods set stock = 200 where id = 2;
+```
+
+再把 price 列改名为 price_yuan(单位:元):
+
+```sql
 alter table goods rename column price to price_yuan;
 select * from goods;
 ```
 
-可以看到新列出现、旧数据被回填、列名也换好了。
+查询结果:
+
+| id | name | price_yuan | stock |
+| ---- | ---- | ---- | ---- |
+| 1 | 机械键盘 | 299 | 100 |
+| 2 | 鼠标 | 99 | 200 |
+
+新列出现、旧数据回填完毕、列名也换好了——表结构就这样安全地演进了一小步。
 
 ## 题目
 

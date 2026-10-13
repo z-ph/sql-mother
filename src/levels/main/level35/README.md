@@ -18,14 +18,34 @@ update student set score = score + 10 where class_id = 4;
 
 ## 示例
 
-给 3 班所有学生年龄加 1、分数加 5:
+学校搞活动,3 班所有学生年龄加 1、分数加 5(别问,问就是活动规则)。3 班目前是:
+
+| id | name | age | class_id | score | exam_num |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 5 | 李阿巴 | 19 | 3 | 120 | 2 |
+| 6 | 老李 | 56 | 3 | 500 | 4 |
+
+执行更新:
 
 ```sql
 update student set age = age + 1, score = score + 5
 where class_id = 3;
 ```
 
-3 班共有李阿巴、老李 2 人,他们的 age 和 score 会按表达式更新,其余班级不受影响。多列更新用逗号分隔,set 后面可以写任意多列。
+再查询验证:
+
+```sql
+select * from student;
+```
+
+查询结果(3 班两行):
+
+| id | name | age | class_id | score | exam_num |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 5 | 李阿巴 | 20 | 3 | 125 | 2 |
+| 6 | 老李 | 57 | 3 | 505 | 4 |
+
+两人的 age 和 score 都在原值基础上按表达式更新,其他班级一行未动。set 后面的多个赋值用逗号分隔。
 
 ## 题目
 

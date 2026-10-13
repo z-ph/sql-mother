@@ -13,19 +13,35 @@
 
 ## 示例
 
-演示 unique 和 check 如何拦截非法数据(与题目无关):
+演示 unique 约束如何拦截非法数据。创建用户表 demo_user,name 不允许重复:
 
 ```sql
 create table demo_user (
     id integer not null primary key autoincrement,
     name varchar(64) not null unique
 );
-insert into demo_user (name) values ('鱼皮');
-insert into demo_user (name) values ('鱼皮');
--- 报错:UNIQUE constraint failed: demo_user.name
 ```
 
-第二条插入因为名字重复而被拒绝,这就是约束的价值:把数据合法性交给数据库兜底。
+连续插入两个同名用户:
+
+```sql
+insert into demo_user (name) values ('鱼皮');
+insert into demo_user (name) values ('鱼皮');
+```
+
+第二条语句直接报错:UNIQUE constraint failed: demo_user.name。查询验证:
+
+```sql
+select * from demo_user;
+```
+
+查询结果:
+
+| id | name |
+| ---- | ---- |
+| 1 | 鱼皮 |
+
+表里只有一行——重复的那条被数据库拒绝。这就是约束的价值:把数据合法性交给数据库兜底,而不是靠程序员自觉。
 
 ## 题目
 

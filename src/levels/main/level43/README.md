@@ -32,7 +32,7 @@ create table 表名 (
 
 ## 示例
 
-演示创建一张图书表(与题目无关,仅供理解语法):
+演示创建一张图书表:自增主键 id、书名 title(非空)、价格 price(默认 9.9 元):
 
 ```sql
 create table book (
@@ -40,11 +40,22 @@ create table book (
     title varchar(256) not null,
     price real default 9.9
 );
+```
+
+刚建好的表是空的,插入一行数据并查询:
+
+```sql
 insert into book (title, price) values ('SQL 从入门到不放弃', 59.9);
 select * from book;
 ```
 
-可以看到新表建好并插入了一行数据,price 不填时会用默认值。
+查询结果:
+
+| id | title | price |
+| ---- | ---- | ---- |
+| 1 | SQL 从入门到不放弃 | 59.9 |
+
+price 不填时会自动使用默认值 9.9,id 由数据库自动分配。新表建好后,就能像 student 表一样随意增删改查了。
 
 ## 题目
 
