@@ -21,7 +21,7 @@ const cases = [
   ["level34", 10],
   ["level35", 10],
   ["level36", 8],
-  ["level37", 0],
+  ["level37", 1],
   ["level38", 9],
   ["level39", 10],
   ["level40", 10],
@@ -62,7 +62,8 @@ for (const [levelDir, expectedRows] of cases) {
   try {
     const first = runAnswer(initSQL, answer);
     const second = runAnswer(initSQL, answer);
-    const actualRows = first[0]?.values?.length ?? -1;
+    const actualRows =
+      first.length === 0 ? 0 : first[0]?.values?.length ?? -1;
     if (JSON.stringify(first) !== JSON.stringify(second)) {
       failed++;
       console.error(`❌ ${levelDir}: 两次独立执行结果不一致(结果不确定)`);

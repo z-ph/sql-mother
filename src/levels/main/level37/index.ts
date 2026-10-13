@@ -8,8 +8,8 @@ export default {
   content: md,
   defaultSQL: "select * from temp_student;",
   answer:
-    "delete from temp_student;\nselect * from temp_student;",
-  hint: "不带 where 条件的 delete from 表名 会删除所有行;不要使用 drop table,最后查询 temp_student 验证应为空表",
+    "delete from temp_student;\nselect count(*) as remain from temp_student;",
+  hint: "不带 where 条件的 delete from 表名 会删除所有行;不要使用 drop table,最后用 select count(*) as remain from temp_student 查询剩余条数,应为 0",
   type: "main",
   difficulty: 1,
 } as LevelType;

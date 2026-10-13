@@ -24,17 +24,17 @@ delete from 表名;
 delete from temp_student;
 ```
 
-再查询验证:
+再查询验证剩余条数:
 
 ```sql
-select * from temp_student;
+select count(*) as remain from temp_student;
 ```
 
-结果返回 0 行,但表结构还在,说明数据已被清空、表本身保留。
+结果为 0,但表结构还在,说明数据已被清空、表本身保留。
 
 ## 题目
 
 请编写 SQL 完成以下操作:
 
 1. 清空 temp_student 表中的所有数据(**不要**使用 drop table,要保留表结构);
-2. 通过 `select * from temp_student` 查询验证,结果应为空表。
+2. 通过 `select count(*) as remain from temp_student` 查询剩余条数验证,结果应为 0。
