@@ -53,17 +53,14 @@ const props = withDefaults(defineProps<SqlEditorProps>(), {});
 const { level, onSubmit } = toRefs(props);
 const inputEditor = ref<IStandaloneCodeEditor>();
 const editorRef = ref<HTMLElement>();
-const db = ref();
 
-watchEffect(async () => {
+watchEffect(() => {
   // 初始化 / 更新默认 SQL
   if (inputEditor.value) {
     toRaw(inputEditor.value).setValue(
       "-- 请在此处输入 SQL\n" + level.value.defaultSQL
     );
   }
-  // 初始化 / 更新 DB
-  db.value = await initDB(level.value.initSQL);
   doSubmit();
 });
 
@@ -93,15 +90,21 @@ const doReset = () => {
 /**
  * 提交结果
  */
-const doSubmit = () => {
+const doSubmit = async () => {
   if (!inputEditor.value) {
     return;
   }
   const inputStr = toRaw(inputEditor.value).getValue();
   console.log("inputStr", inputStr);
+  const initSQL = level.value.initSQL;
+  const answer = level.value.answer;
   try {
-    const result = runSQL(db.value, inputStr);
-    const answerResult = runSQL(db.value, level.value.answer);
+    // 用户 SQL 和答案 SQL 分别在两个全新的数据库上执行，
+    // 保证增删改操作相互隔离、多次运行结果稳定（每次运行都从初始数据开始）
+    const db = await initDB(initSQL);
+    const answerDb = await initDB(initSQL);
+    const result = runSQL(db, inputStr);
+    const answerResult = runSQL(answerDb, answer);
     // 向外层传递结果
     onSubmit?.value(inputStr, result, answerResult);
   } catch (error: any) {
