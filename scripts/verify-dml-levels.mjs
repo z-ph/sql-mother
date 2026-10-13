@@ -27,6 +27,10 @@ const cases = [
   ["level40", 10],
   ["level41", 12],
   ["level42", 10],
+  ["level43", 2],
+  ["level44", 2],
+  ["level45", 10],
+  ["level46", 3],
 ];
 
 const SQL = await initSqlJs();
