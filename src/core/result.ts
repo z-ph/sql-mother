@@ -12,7 +12,7 @@ export const RESULT_STATUS_ENUM = {
 /**
  * 结果状态信息映射
  */
-export const RESULT_STATUS_INFO_MAP = {
+export const RESULT_STATUS_INFO_MAP: Record<number, string> = {
   "-1": "未执行",
   0: "❌ 错误",
   1: "✅ 正确",

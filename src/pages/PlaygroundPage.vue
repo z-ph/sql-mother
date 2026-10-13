@@ -6,6 +6,7 @@
         <sql-editor
           :level="allLevels[0]"
           :editor-style="{ height: 480 + 'px' }"
+          :result-status="-1"
           :on-submit="onSubmit"
         />
         <a-card title="执行历史" style="margin-top: 16px">
@@ -15,14 +16,18 @@
               :key="index"
               :header="data.sql"
             >
-              <sql-result :result="data.result" :error-msg="data.errorMsg" />
+              <sql-result
+                :result="data.result"
+                :result-status="-1"
+                :error-msg="data.errorMsg"
+              />
             </a-collapse-panel>
           </a-collapse>
           <div v-else>暂无执行历史</div>
         </a-card>
       </a-col>
       <a-col :md="12" :xs="24">
-        <sql-result :result="result" />
+        <sql-result :result="result" :result-status="-1" />
       </a-col>
     </a-row>
   </div>
