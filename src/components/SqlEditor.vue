@@ -54,16 +54,6 @@ const { level, onSubmit } = toRefs(props);
 const inputEditor = ref<IStandaloneCodeEditor>();
 const editorRef = ref<HTMLElement>();
 
-watchEffect(() => {
-  // 初始化 / 更新默认 SQL
-  if (inputEditor.value) {
-    toRaw(inputEditor.value).setValue(
-      "-- 请在此处输入 SQL\n" + level.value.defaultSQL
-    );
-  }
-  doSubmit();
-});
-
 /**
  * SQL 格式化
  */
@@ -113,6 +103,16 @@ const doSubmit = async () => {
     onSubmit?.value(inputStr, [], [], error.message);
   }
 };
+
+watchEffect(() => {
+  // 初始化 / 更新默认 SQL
+  if (inputEditor.value) {
+    toRaw(inputEditor.value).setValue(
+      "-- 请在此处输入 SQL\n" + level.value.defaultSQL
+    );
+  }
+  doSubmit();
+});
 
 onMounted(async () => {
   // 初始化代码编辑器
