@@ -28,6 +28,18 @@ import level27 from "./main/level27";
 import level28 from "./main/level28";
 import level29 from "./main/level29";
 import level30 from "./main/level30";
+import level31 from "./main/level31";
+import level32 from "./main/level32";
+import level33 from "./main/level33";
+import level34 from "./main/level34";
+import level35 from "./main/level35";
+import level36 from "./main/level36";
+import level37 from "./main/level37";
+import level38 from "./main/level38";
+import level39 from "./main/level39";
+import level40 from "./main/level40";
+import level41 from "./main/level41";
+import level42 from "./main/level42";
 
 /**
  * 主线关卡列表
@@ -63,6 +75,18 @@ const mainLevels: LevelType[] = [
   level28,
   level29,
   level30,
+  level31,
+  level32,
+  level33,
+  level34,
+  level35,
+  level36,
+  level37,
+  level38,
+  level39,
+  level40,
+  level41,
+  level42,
 ];
 
 export default mainLevels;
